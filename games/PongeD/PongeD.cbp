@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="PongeD" />
+		<Option pch_mode="2" />
+		<Option compiler="dmd" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/PongeD" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="dmd" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-debug" />
+					<Add directory="C:/Derelict3/import" />
+				</Compiler>
+				<Linker>
+					<Add library="C:\Derelict3\lib\dmd\DerelictUtil.lib" />
+					<Add library="C:\Derelict3\lib\dmd\DerelictSDL2.lib" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/PongeD" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="dmd" />
+				<Compiler>
+					<Add option="-O" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-w" />
+			<Add option="-v" />
+		</Compiler>
+		<Unit filename="PongeD.d" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
