@@ -1,0 +1,136 @@
+diff -rupN SQUIRREL3/sq/Makefile SQUIRREL3_new/sq/Makefile
+--- SQUIRREL3/sq/Makefile	2015-01-10 07:23:34.000000000 -0500
++++ SQUIRREL3_new/sq/Makefile	2015-05-22 08:28:40.349528090 -0400
+@@ -1,21 +1,22 @@
+ SQUIRREL= ..
+ 
++CROSS_COMPILE=
+ 
+ OUT= $(SQUIRREL)/bin/sq
+ INCZ= -I$(SQUIRREL)/include -I. -I$(SQUIRREL)/sqlibs
+-LIBZ= -L$(SQUIRREL)/lib 
++LIBZ= -L$(SQUIRREL)/lib
+ LIB= -lsquirrel -lsqstdlib
+ 
+ OBJS= sq.o
+-	
++
+ SRCS= sq.c
+-	
+-	
++
++
+ sq32:
+-	g++ -O2 -fno-exceptions -fno-rtti -o $(OUT) $(SRCS) $(INCZ) $(LIBZ) $(LIB)
++	${CROSS_COMPILE}g++ -O2 -fno-exceptions -fno-rtti -o $(OUT) $(SRCS) $(INCZ) $(LIBZ) $(LIB)
+ 
+ sqprof:
+-	g++ -O2 -pg -fno-exceptions -fno-rtti -pie -gstabs -g3 -o $(OUT) $(SRCS) $(INCZ) $(LIBZ) $(LIB)
+-	
++	${CROSS_COMPILE}g++ -O2 -pg -fno-exceptions -fno-rtti -pie -gstabs -g3 -o $(OUT) $(SRCS) $(INCZ) $(LIBZ) $(LIB)
++
+ sq64:
+-	g++ -O2 -m64 -fno-exceptions -fno-rtti -D_SQ64 -o $(OUT) $(SRCS) $(INCZ) $(LIBZ) $(LIB)
++	${CROSS_COMPILE}g++ -O2 -m64 -fno-exceptions -fno-rtti -D_SQ64 -o $(OUT) $(SRCS) $(INCZ) $(LIBZ) $(LIB)
+diff -rupN SQUIRREL3/sqstdlib/Makefile SQUIRREL3_new/sqstdlib/Makefile
+--- SQUIRREL3/sqstdlib/Makefile	2011-04-09 16:56:42.000000000 -0400
++++ SQUIRREL3_new/sqstdlib/Makefile	2015-05-22 08:28:08.396795050 -0400
+@@ -1,5 +1,6 @@
+ SQUIRREL= ..
+ 
++CROSS_COMPILE=
+ 
+ OUT= $(SQUIRREL)/lib/libsqstdlib.a
+ INCZ= -I$(SQUIRREL)/include -I. -Iinclude
+@@ -13,7 +14,7 @@ OBJS= \
+ 	sqstdstring.o \
+ 	sqstdaux.o \
+ 	sqstdrex.o
+-	
++
+ SRCS= \
+ 	sqstdblob.cpp \
+ 	sqstdio.cpp \
+@@ -23,19 +24,19 @@ SRCS= \
+ 	sqstdstring.cpp \
+ 	sqstdaux.cpp \
+ 	sqstdrex.cpp
+-	
+-	
++
++
+ sq32:
+-	gcc -O2 -fno-exceptions -fno-rtti -Wall -fno-strict-aliasing -c $(SRCS) $(INCZ)
+-	ar rc $(OUT) *.o
++	${CROSS_COMPILE}gcc -O2 -fno-exceptions -fno-rtti -Wall -fno-strict-aliasing -c $(SRCS) $(INCZ)
++	${CROSS_COMPILE}ar rc $(OUT) *.o
+ 	rm *.o
+ 
+ sqprof:
+-	gcc -O2 -pg -fno-exceptions -fno-rtti -pie -gstabs -g3 -Wall -fno-strict-aliasing -c $(SRCS) $(INCZ)
+-	ar rc $(OUT) *.o
++	${CROSS_COMPILE}gcc -O2 -pg -fno-exceptions -fno-rtti -pie -gstabs -g3 -Wall -fno-strict-aliasing -c $(SRCS) $(INCZ)
++	${CROSS_COMPILE}ar rc $(OUT) *.o
+ 	rm *.o
+-	
++
+ sq64:
+-	gcc -O2 -m64 -fno-exceptions -D_SQ64 -fno-rtti -Wall -fno-strict-aliasing -c $(SRCS) $(INCZ)
+-	ar rc $(OUT) *.o
++	${CROSS_COMPILE}gcc -O2 -m64 -fno-exceptions -D_SQ64 -fno-rtti -Wall -fno-strict-aliasing -c $(SRCS) $(INCZ)
++	${CROSS_COMPILE}ar rc $(OUT) *.o
+ 	rm *.o
+diff -rupN SQUIRREL3/squirrel/Makefile SQUIRREL3_new/squirrel/Makefile
+--- SQUIRREL3/squirrel/Makefile	2012-02-11 11:56:02.000000000 -0500
++++ SQUIRREL3_new/squirrel/Makefile	2015-05-22 08:25:43.577505834 -0400
+@@ -1,10 +1,10 @@
+ SQUIRREL= ..
+-
++CROSS_COMPILE=
+ 
+ OUT= $(SQUIRREL)/lib/libsquirrel.a
+ INCZ= -I$(SQUIRREL)/include -I. -Iinclude
+-DEFS= 
+-LIB=	
++DEFS=
++LIB=
+ 
+ OBJS= \
+ 	sqapi.o \
+@@ -19,7 +19,7 @@ OBJS= \
+ 	sqmem.o \
+ 	sqvm.o \
+ 	sqclass.o
+-	
++
+ SRCS= \
+ 	sqapi.cpp \
+ 	sqbaselib.cpp \
+@@ -34,19 +34,19 @@ SRCS= \
+ 	sqvm.cpp \
+ 	sqclass.cpp
+ 
+-	
+-	
++
++
+ sq32:
+-	gcc -O2 -fno-exceptions -fno-rtti -Wall -fno-strict-aliasing -c $(SRCS) $(INCZ) $(DEFS)
+-	ar rc $(OUT) *.o
++	${CROSS_COMPILE}gcc -O2 -fno-exceptions -fno-rtti -Wall -fno-strict-aliasing -c $(SRCS) $(INCZ) $(DEFS)
++	${CROSS_COMPILE}ar rc $(OUT) *.o
+ 	rm *.o
+ 
+ sqprof:
+-	gcc -O2 -pg -fno-exceptions -fno-rtti -pie -gstabs -g3 -Wall -fno-strict-aliasing -c $(SRCS) $(INCZ) $(DEFS)
+-	ar rc $(OUT) *.o
++	${CROSS_COMPILE}gcc -O2 -pg -fno-exceptions -fno-rtti -pie -gstabs -g3 -Wall -fno-strict-aliasing -c $(SRCS) $(INCZ) $(DEFS)
++	${CROSS_COMPILE}ar rc $(OUT) *.o
+ 	rm *.o
+ 
+ sq64:
+-	gcc -O2 -m64 -D_SQ64 -fno-exceptions -fno-rtti -Wall -fno-strict-aliasing -c $(SRCS) $(INCZ) $(DEFS)
+-	ar rc $(OUT) *.o
++	${CROSS_COMPILE}gcc -O2 -m64 -D_SQ64 -fno-exceptions -fno-rtti -Wall -fno-strict-aliasing -c $(SRCS) $(INCZ) $(DEFS)
++	${CROSS_COMPILE}ar rc $(OUT) *.o
+ 	rm *.o
