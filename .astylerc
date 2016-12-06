@@ -1,0 +1,29 @@
+## bracket style options
+#--style=attach
+#--style=break
+--style=1tbs
+
+## tab options
+--indent=spaces
+
+## bracket modify options
+#--attach-extern-c
+
+## indentation options
+#--indent-classes
+--indent-switches
+--indent-namespaces
+--indent-col1-comments
+
+## padding options
+--pad-oper
+--pad-header
+--unpad-paren
+--align-pointer=name
+--align-reference=name
+
+## formatting options
+
+## other options
+--suffix=none
+--formatted
