@@ -6,6 +6,7 @@ $(OBJECTS): $(SOURCES)
 Where ```SOURCES``` is a list of source files and ```OBJECTS``` is a list of object files:  
 - ```$<``` - is the first (or next) file from ```SOURCES```  
 - ```$@``` - is the first (or next) file from ```OBJECTS```  
+- ```$^``` - is the entire list of dependences if listed individually (```SOURCES```)
 
 Also, from the Make manual:  
 > - ```AR``` - Archive-maintaining program; default ‘ar’.
