@@ -1,12 +1,11 @@
 ```makefile
-$(OBJECTS): $(SOURCES)
-	$(CC) $(CFLAGS) -o $@ $(INCLUDES) -c $< $(LIB_INC) $(LIBS)
+all: library.cpp main.cpp
 ```
 
-Where ```SOURCES``` is a list of source files and ```OBJECTS``` is a list of object files:  
-- ```$<``` - is the first (or next) file from ```SOURCES```  
-- ```$@``` - is the first (or next) file from ```OBJECTS```  
-- ```$^``` - is the entire list of dependences if listed individually (```SOURCES```)
+In this case:
+- ```$@``` evaluates to all
+- ```$<``` evaluates to library.cpp
+- ```$^``` evaluates to library.cpp main.cpp
 
 Also, from the Make manual:  
 > - ```AR``` - Archive-maintaining program; default ‘ar’.
@@ -18,8 +17,8 @@ Also, from the Make manual:
 > Here is a table of variables whose values are additional arguments for the programs above. The default values for all of these is the empty string, unless otherwise noted.
 > - ```ARFLAGS``` - Flags to give the archive-maintaining program; default ‘rv’.
 > - ```ASFLAGS``` - Extra flags to give to the assembler (when explicitly invoked on a ‘.s’ or ‘.S’ file).
+> - ```CPPFLAGS``` - Extra flags to give to the C preprocessor and programs that use it (the C and Fortran compilers).
 > - ```CFLAGS``` - Extra flags to give to the C compiler.
 > - ```CXXFLAGS``` - Extra flags to give to the C++ compiler.
-> - ```CPPFLAGS``` - Extra flags to give to the C preprocessor and programs that use it (the C and Fortran compilers).
 > - ```LDFLAGS``` - Extra flags to give to compilers when they are supposed to invoke the linker, ‘ld’, such as -L. Libraries (-lfoo) should be added to the LDLIBS variable instead.
 > - ```LDLIBS``` - Library flags or names given to compilers when they are supposed to invoke the linker, ‘ld’. LOADLIBES is a deprecated (but still supported) alternative to LDLIBS. Non-library linker flags, such as -L, should go in the LDFLAGS variable.
