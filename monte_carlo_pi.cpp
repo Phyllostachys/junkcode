@@ -1,3 +1,5 @@
+// An implementation of this: https://en.wikipedia.org/wiki/Monte_Carlo_method#Introduction
+
 #include <cstdint>
 #include <cstdio>
 #include <cmath>
