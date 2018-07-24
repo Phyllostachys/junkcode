@@ -1,14 +1,12 @@
 #include <cstdio>
 #include <windows.h>
 
-#define STATUS_NOT_FOUND 0xC0000225L
-
 int main(int argc, char **argv) {
     void *algHandle;
     unsigned long ret = BCryptOpenAlgorithmProvider(&algHandle, BCRYPT_RNG_ALGORITHM, 0ul, 0ul);
     if (ret != 0ul) {
         switch (ret) {
-            case STATUS_NOT_FOUND:
+            case 0xC0000225L:
                 printf("BCryptOpenAlgorithmProvider error, not found (0x%lx)\n", ret);
                 break;
 
@@ -43,8 +41,8 @@ int main(int argc, char **argv) {
         case 0l: {
                 int counter = 0;
                 for (int i = 0; i < num; i++) {
-                    printf("%4d ", buf[i]);
-                    if (++counter > 7) {
+                    printf("%02x", buf[i]);
+                    if (++counter > 3) {
                         counter = 0;
                         puts("");
                     }
